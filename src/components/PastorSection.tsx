@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 const PastorSection = () => {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   const messages = [
@@ -13,6 +14,15 @@ const PastorSection = () => {
     "Grace changes everything.",
     "Come as you are, leave transformed.",
     "Your story matters here."
+  ];
+
+  const images = [
+    "/lovable-uploads/b9233848-e8fa-48be-aa9c-8c6004d91ad6.png",
+    "/lovable-uploads/361ddaaa-999e-4351-8c04-a1312f491338.png",
+    "/lovable-uploads/383cc066-c7a8-47f4-be3a-04084dbe8556.png",
+    "/lovable-uploads/15d85831-4c9e-451b-83bd-3b0bc1c3455f.png",
+    "/lovable-uploads/ff2fc01d-f0e9-43c3-9b87-ae69def4c560.png",
+    "/lovable-uploads/819cdfc9-7154-419a-a58f-af73cae0343b.png"
   ];
 
   useEffect(() => {
@@ -37,11 +47,12 @@ const PastorSection = () => {
     if (isVisible) {
       const interval = setInterval(() => {
         setCurrentMessageIndex((prev) => (prev + 1) % messages.length);
-      }, 4000); // Slightly slower for better readability
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      }, 4000);
 
       return () => clearInterval(interval);
     }
-  }, [isVisible, messages.length]);
+  }, [isVisible, messages.length, images.length]);
 
   // Handle scroll-based message changes
   useEffect(() => {
@@ -57,9 +68,14 @@ const PastorSection = () => {
         
         if (relativeScroll > 0 && relativeScroll < sectionHeight) {
           const progress = relativeScroll / sectionHeight;
-          const newIndex = Math.floor(progress * messages.length);
-          if (newIndex !== currentMessageIndex && newIndex < messages.length) {
-            setCurrentMessageIndex(newIndex);
+          const newMessageIndex = Math.floor(progress * messages.length);
+          const newImageIndex = Math.floor(progress * images.length);
+          
+          if (newMessageIndex !== currentMessageIndex && newMessageIndex < messages.length) {
+            setCurrentMessageIndex(newMessageIndex);
+          }
+          if (newImageIndex !== currentImageIndex && newImageIndex < images.length) {
+            setCurrentImageIndex(newImageIndex);
           }
         }
       }
@@ -67,7 +83,7 @@ const PastorSection = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isVisible, currentMessageIndex, messages.length]);
+  }, [isVisible, currentMessageIndex, currentImageIndex, messages.length, images.length]);
 
   return (
     <section id="pastor-section" className="py-20 bg-cream">
@@ -114,16 +130,25 @@ const PastorSection = () => {
             </div>
           </div>
 
-          {/* Pastor Image */}
+          {/* Cycling Images */}
           <div className={`relative transition-all duration-1000 ${
             isVisible ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-12'
           }`}>
             <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?q=80&w=5304&auto=format&fit=crop"
-                alt="Pastor Sarah Johnson"
-                className="rounded-2xl shadow-2xl w-full h-96 object-cover object-center"
-              />
+              <div className="relative h-96 w-full overflow-hidden rounded-2xl shadow-2xl">
+                {images.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Church image ${index + 1}`}
+                    className={`absolute inset-0 w-full h-full object-contain bg-white transition-all duration-1000 ${
+                      index === currentImageIndex 
+                        ? 'opacity-100 transform scale-100' 
+                        : 'opacity-0 transform scale-105'
+                    }`}
+                  />
+                ))}
+              </div>
               <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-gold rounded-full animate-float"></div>
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-lightBlue rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
             </div>
