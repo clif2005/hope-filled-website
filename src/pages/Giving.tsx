@@ -3,7 +3,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Giving as GivingIcon, Users, Church, Contact } from 'lucide-react';
+import { Heart, Users, Church, Contact } from 'lucide-react';
 
 const Giving = () => {
   return (
@@ -150,7 +150,7 @@ const Giving = () => {
       <section className="py-20 bg-navy text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="flex justify-center mb-6">
-            <GivingIcon className="h-12 w-12 text-gold" />
+            <Heart className="h-12 w-12 text-gold" />
           </div>
           <h2 className="font-playfair text-4xl font-bold mb-6">Ready to Give?</h2>
           <p className="font-inter text-lg mb-8 opacity-90 max-w-2xl mx-auto">

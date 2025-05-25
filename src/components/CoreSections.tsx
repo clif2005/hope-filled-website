@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Calendar, Users, Giving, Image as ImageIcon } from 'lucide-react';
+import { Calendar, Users, Heart, Image as ImageIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const CoreSections = () => {
@@ -93,7 +93,7 @@ const CoreSections = () => {
         {/* Giving Section */}
         <section className="bg-cream rounded-3xl p-12 text-center">
           <div className="flex justify-center mb-6">
-            <Giving className="h-12 w-12 text-gold" />
+            <Heart className="h-12 w-12 text-gold" />
           </div>
           <h2 className="font-playfair text-4xl font-bold text-navy mb-6">Your Generosity Makes a Difference</h2>
           <p className="font-inter text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
