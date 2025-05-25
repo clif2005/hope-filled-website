@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Church, MapPin, Mail } from 'lucide-react';
+import { MapPin, Mail } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,7 +20,11 @@ const Footer = () => {
           {/* Logo and Mission */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Church className="h-8 w-8 text-gold" />
+              <img 
+                src="/lovable-uploads/b9233848-e8fa-48be-aa9c-8c6004d91ad6.png" 
+                alt="Grace Community Church" 
+                className="h-8 w-8 object-contain"
+              />
               <div className="flex flex-col">
                 <span className="font-playfair font-bold text-lg leading-tight">Grace Community</span>
                 <span className="font-inter text-sm text-gray-300">Church</span>
@@ -74,10 +78,14 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Embedded Map */}
+            {/* Church Image */}
             <div className="mt-6">
-              <div className="bg-gray-800 rounded-lg h-32 flex items-center justify-center">
-                <p className="font-inter text-gray-400 text-sm">Interactive Map</p>
+              <div className="rounded-lg h-32 overflow-hidden">
+                <img 
+                  src="/lovable-uploads/383cc066-c7a8-47f4-be3a-04084dbe8556.png" 
+                  alt="Grace Community Church Building" 
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

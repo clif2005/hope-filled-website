@@ -27,10 +27,10 @@ const CoreSections = () => {
   ];
 
   const galleryImages = [
-    "https://images.unsplash.com/photo-1473177104440-ffee2f376098?q=80&w=2731&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=6052&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1500673922987-e212871fec22?q=80&w=7360&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=3634&auto=format&fit=crop"
+    "/lovable-uploads/15d85831-4c9e-451b-83bd-3b0bc1c3455f.png",
+    "/lovable-uploads/819cdfc9-7154-419a-a58f-af73cae0343b.png",
+    "/lovable-uploads/ff2fc01d-f0e9-43c3-9b87-ae69def4c560.png",
+    "/lovable-uploads/383cc066-c7a8-47f4-be3a-04084dbe8556.png"
   ];
 
   return (

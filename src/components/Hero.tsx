@@ -16,7 +16,7 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=6052&auto=format&fit=crop')`,
+          backgroundImage: `url('/lovable-uploads/361ddaaa-999e-4351-8c04-a1312f491338.png')`,
         }}
       >
         {/* Overlay */}

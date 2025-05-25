@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Church } from 'lucide-react';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,7 +48,11 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <Church className="h-8 w-8 text-navy group-hover:text-gold transition-colors duration-300" />
+            <img 
+              src="/lovable-uploads/b9233848-e8fa-48be-aa9c-8c6004d91ad6.png" 
+              alt="Grace Community Church" 
+              className="h-8 w-8 object-contain group-hover:opacity-80 transition-opacity duration-300"
+            />
             <div className="flex flex-col">
               <span className={`font-playfair font-bold text-lg leading-tight ${
                 isScrolled ? 'text-navy' : 'text-white'
