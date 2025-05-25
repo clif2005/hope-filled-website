@@ -10,7 +10,9 @@ const PastorSection = () => {
     "You matter to God, and you matter to us.",
     "Hope lives here.",
     "Everyone has a place in God's family.",
-    "Grace changes everything."
+    "Grace changes everything.",
+    "Come as you are, leave transformed.",
+    "Your story matters here."
   ];
 
   useEffect(() => {
@@ -35,11 +37,37 @@ const PastorSection = () => {
     if (isVisible) {
       const interval = setInterval(() => {
         setCurrentMessageIndex((prev) => (prev + 1) % messages.length);
-      }, 3000);
+      }, 4000); // Slightly slower for better readability
 
       return () => clearInterval(interval);
     }
   }, [isVisible, messages.length]);
+
+  // Handle scroll-based message changes
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isVisible) return;
+      
+      const scrollY = window.scrollY;
+      const sectionElement = document.getElementById('pastor-section');
+      if (sectionElement) {
+        const sectionTop = sectionElement.offsetTop;
+        const sectionHeight = sectionElement.offsetHeight;
+        const relativeScroll = scrollY - sectionTop;
+        
+        if (relativeScroll > 0 && relativeScroll < sectionHeight) {
+          const progress = relativeScroll / sectionHeight;
+          const newIndex = Math.floor(progress * messages.length);
+          if (newIndex !== currentMessageIndex && newIndex < messages.length) {
+            setCurrentMessageIndex(newIndex);
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isVisible, currentMessageIndex, messages.length]);
 
   return (
     <section id="pastor-section" className="py-20 bg-cream">
@@ -47,7 +75,7 @@ const PastorSection = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Messages */}
           <div className="space-y-8">
-            <div className="relative h-32 flex items-center">
+            <div className="relative h-40 flex items-center">
               {messages.map((message, index) => (
                 <div
                   key={index}
@@ -65,7 +93,7 @@ const PastorSection = () => {
             </div>
             
             <div className="border-l-4 border-gold pl-6">
-              <p className="font-inter text-gray-700 mb-2">Pastor Sarah Johnson</p>
+              <p className="font-inter text-gray-700 mb-2 font-semibold">Pastor Sarah Johnson</p>
               <p className="font-inter text-sm text-gray-600">
                 "After 15 years in ministry, I've learned that church isn't a building—it's a family. 
                 Our community is built on authenticity, love, and the belief that everyone belongs."
@@ -92,9 +120,9 @@ const PastorSection = () => {
           }`}>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=3634&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?q=80&w=5304&auto=format&fit=crop"
                 alt="Pastor Sarah Johnson"
-                className="rounded-2xl shadow-2xl w-full h-96 object-cover"
+                className="rounded-2xl shadow-2xl w-full h-96 object-cover object-center"
               />
               <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-gold rounded-full animate-float"></div>
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-lightBlue rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
